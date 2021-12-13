@@ -1,0 +1,10 @@
+package com.jquevedo.model;
+
+public class Tareas {
+
+	private Integer idTareas;
+	private String NombreTarea;
+	private String ResumenTarea;
+	private String EstadoTarea;
+
+}

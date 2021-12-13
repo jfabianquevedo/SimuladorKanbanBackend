@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?><testrun name="DemoApplicationTests" project="EmuladorKanban" tests="1" started="1" failures="0" errors="0" ignored="0">
+  <testsuite name="com.jquevedo.DemoApplicationTests" time="7.312" displayname="DemoApplicationTests" uniqueid="[engine:junit-jupiter]/[class:com.jquevedo.DemoApplicationTests]">
+    <testcase name="buscarUsuario" classname="com.jquevedo.DemoApplicationTests" time="7.312" displayname="buscarUsuario()" uniqueid="[engine:junit-jupiter]/[class:com.jquevedo.DemoApplicationTests]/[method:buscarUsuario()]"/>
+  </testsuite>
+</testrun>

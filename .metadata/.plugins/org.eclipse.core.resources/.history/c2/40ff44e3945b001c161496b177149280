@@ -1,0 +1,14 @@
+package com.jquevedo.service;
+
+import java.util.List;
+
+import org.springframework.data.repository.query.Param;
+
+import com.jquevedo.model.Tareas;
+
+public interface TareasService extends GenericCrud<Tareas, Integer> {
+
+	List<Tareas> listarUsuario(Integer idSolicitud);
+
+	Tareas listarPorEstado(Integer idEstado, Integer idTarea);
+}

@@ -1,0 +1,29 @@
+package com.jquevedo.serviceImpl;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+
+import org.springframework.stereotype.Service;
+
+import com.jquevedo.repo.GenericRepo;
+import com.jquevedo.repo.UsuarioRepo;
+
+@Service
+public class UsuarioImpl extends CrudImpl<Usuarios, Integer> implements UserDetailsService {
+
+	@Autowired
+	UsuarioRepo repo;
+
+	@Override
+	protected GenericRepo<Usuarios, Integer> getRepo() {
+		return repo;
+	}
+
+	@Override
+	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

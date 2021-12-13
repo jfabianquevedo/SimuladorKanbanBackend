@@ -1,0 +1,25 @@
+package com.jquevedo;
+
+import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+
+import com.jquevedo.model.Usuarios;
+import com.jquevedo.repo.UsuarioRepo;
+
+@SpringBootTest
+class DemoApplicationTests {
+
+	@Autowired
+	UsuarioRepo repo;
+
+	@Test
+	void buscarUsuario() {
+		Usuarios us = new Usuarios();
+		us.setUsername("jquevedo");
+		us.setPassword("123");
+		Usuarios user = repo.findOneByUsername(us.getUsername());
+		System.out.println(user);
+	}
+
+}

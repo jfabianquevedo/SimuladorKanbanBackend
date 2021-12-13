@@ -1,0 +1,17 @@
+package com.jquevedo.controller;
+
+@RestController
+@RequestMapping("/Usuario")
+//public class UsuarioController {
+//
+//	@Autowired
+//	UsuarioService service;
+//
+//	@PostMapping
+//	public ResponseEntity<Usuarios> registrar(@RequestBody Usuarios u) throws Exception {
+//		Usuarios usuario = service.registrar(u);
+//		URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
+//				.buildAndExpand(usuario.getIdUsuario()).toUri();
+//		return ResponseEntity.created(location).build();
+//	}
+}

@@ -1,0 +1,36 @@
+package com.jquevedo.serviceImpl;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.stereotype.Service;
+
+import com.jquevedo.model.Usuarios;
+import com.jquevedo.repo.GenericRepo;
+import com.jquevedo.repo.UsuarioRepo;
+
+@Service
+public class UsuarioImpl extends CrudImpl<Usuarios, Integer> implements UserDetailsService {
+
+	@Autowired
+	UsuarioRepo repo;
+
+	@Override
+	protected GenericRepo<Usuarios, Integer> getRepo() {
+		return repo;
+	}
+
+	@Override
+	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+
+		Usuarios usuario = repo.findOneByNombreUsuario(username);
+		if (usuario == null) {
+			throw new UsernameNotFoundException(String.format("Usuario no Existe", username));
+		}
+		UserDetails ud = new User(usuario.getNombreUsuario(), usuario.getPassword(), true,true,true,true,null);
+		return ud;
+	}
+
+}

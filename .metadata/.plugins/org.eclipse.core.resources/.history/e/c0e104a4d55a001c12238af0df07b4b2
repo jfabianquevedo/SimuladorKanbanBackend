@@ -1,0 +1,21 @@
+package com.jquevedo.serviceImpl;
+
+import org.springframework.beans.factory.annotation.Autowired;
+
+import com.jquevedo.model.Usuarios;
+import com.jquevedo.repo.GenericRepo;
+import com.jquevedo.repo.UsuarioRepo;
+import com.jquevedo.service.UsuarioService;
+
+public class UsuarioImpl extends CrudImpl<Usuarios, Integer> implements UsuarioService {
+
+	@Autowired
+	UsuarioRepo repo;
+
+	@Override
+	protected GenericRepo<Usuarios, Integer> getRepo() {
+
+		return repo;
+	}
+
+}

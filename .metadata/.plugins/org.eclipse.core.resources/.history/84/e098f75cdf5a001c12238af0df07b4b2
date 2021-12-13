@@ -1,0 +1,5 @@
+package com.jquevedo.exception;
+
+public class ModelNotFoundException {
+
+}

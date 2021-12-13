@@ -1,0 +1,8 @@
+package com.jquevedo.model;
+
+public class Usuarios {
+
+	private Integer idUsuario;
+	private String nombreUsuario;
+	private String password;
+}

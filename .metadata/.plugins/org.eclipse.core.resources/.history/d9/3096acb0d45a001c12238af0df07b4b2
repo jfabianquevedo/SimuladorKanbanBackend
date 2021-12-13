@@ -1,0 +1,5 @@
+package com.jquevedo.service;
+
+public interface GenericCrud<T, ID> {
+
+}

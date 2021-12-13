@@ -1,0 +1,65 @@
+package com.jquevedo.controller;
+
+import java.net.URI;
+import java.time.LocalDateTime;
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
+
+import com.jquevedo.model.Tareas;
+import com.jquevedo.service.TareasService;
+
+@RestController
+@RequestMapping("Tarea")
+public class TareasController {
+
+	@Autowired
+	private TareasService service;
+
+	@GetMapping
+	public ResponseEntity<Tareas> registrar(@RequestBody Tareas t) throws Exception {
+		Tareas tarea = service.registrar(t);
+		URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(tarea.getIdTarea())
+				.toUri();
+		return ResponseEntity.created(location).build();
+
+	}
+
+	@GetMapping
+	public ResponseEntity<List<Tareas>> listar() throws Exception {
+		List<Tareas> listaSolicitudes = service.listar();
+		return new ResponseEntity<List<Tareas>>(listaSolicitudes, HttpStatus.OK);
+	}
+
+	@PutMapping
+	public ResponseEntity<Tareas> modificar(@RequestBody Tareas t) throws Exception {
+		Tareas obj = service.listarPorId(t.getIdTarea());
+		if (obj == null) {
+			throw new RuntimeException("LA SOLICITUD YA ESTA EN EJECUCIÓN " + t.getIdTarea());
+		}
+		Tareas solicitud = service.modificar(t);
+		return new ResponseEntity<Tareas>(solicitud, HttpStatus.OK);
+	}
+
+	@DeleteMapping("/{id}")
+	// se devuelve void ya que el metodo en el impl es void
+	public ResponseEntity<Void> eliminar(@PathVariable("id") Integer id) {
+		Paciente obj = service.listarPorId(id);
+		if (obj == null) {
+			throw new ModeloNotfoundException("no encontrado" + id);
+		}
+		service.eliminar(id);
+		return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
+	}
+
+}

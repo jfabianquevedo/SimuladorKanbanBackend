@@ -1,0 +1,10 @@
+package com.jquevedo.serviceImpl;
+
+import com.jquevedo.repo.GenericRepo;
+import com.jquevedo.service.GenericCrud;
+
+public abstract class CrudImpl<T, ID> implements GenericCrud<T, ID> {
+
+	protected abstract GenericRepo<T, ID> getRepo();
+
+}

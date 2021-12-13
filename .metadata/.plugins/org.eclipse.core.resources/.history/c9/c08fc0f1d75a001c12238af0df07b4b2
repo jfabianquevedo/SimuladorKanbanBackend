@@ -1,0 +1,28 @@
+package com.jquevedo.controller;
+
+import java.net.URI;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
+
+import com.jquevedo.model.Usuarios;
+import com.jquevedo.service.UsuarioService;
+
+@RestController
+@RequestMapping("/usuario")
+public class UsuarioController {
+
+	@Autowired
+	UsuarioService service;
+
+	public ResponseEntity<Usuarios> registrar(@RequestBody Usuarios u) throws Exception {
+		Usuarios usuarios = service.registrar(u);
+		URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(tarea.getIdTarea())
+				.toUri();
+		return ResponseEntity.created(location).build();
+	}
+}

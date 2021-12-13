@@ -1,0 +1,7 @@
+package com.jquevedo.util;
+
+public interface Constantes {
+	
+	public static final Integer PENDIENTE = 1;
+
+}

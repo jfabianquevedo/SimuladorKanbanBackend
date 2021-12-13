@@ -1,0 +1,7 @@
+package com.jquevedo.service;
+
+public interface GenericCrud<T, ID> {
+
+	T registrar(T t);
+
+}

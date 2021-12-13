@@ -1,0 +1,8 @@
+package com.jquevedo.serviceImpl;
+
+import com.jquevedo.model.Usuarios;
+import com.jquevedo.service.UsuarioService;
+
+public class UsuarioImpl extends CrudImpl<Usuarios, Integer> implements UsuarioService {
+
+}

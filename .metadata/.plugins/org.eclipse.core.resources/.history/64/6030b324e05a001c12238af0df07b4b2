@@ -1,0 +1,47 @@
+package com.informacolombia.exception;
+
+import java.time.LocalDateTime;
+import java.util.stream.Collectors;
+
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.MethodArgumentNotValidException;
+import org.springframework.web.bind.annotation.ControllerAdvice;
+import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.context.request.WebRequest;
+import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
+
+@ControllerAdvice
+@RestController
+public class InfColResponseExceptionHandle extends ResponseEntityExceptionHandler{
+
+	@ExceptionHandler(Exception.class)
+	public final ResponseEntity<InfColExceptionResponse> manejarTodasExcepciones(Exception ex, WebRequest request){		
+		InfColExceptionResponse er = new InfColExceptionResponse(LocalDateTime.now(), ex.getMessage(), request.getDescription(false));		
+		return new ResponseEntity<InfColExceptionResponse>(er, HttpStatus.INTERNAL_SERVER_ERROR);
+	}
+	@Override
+	protected ResponseEntity<Object> handleMethodArgumentNotValid(MethodArgumentNotValidException ex,
+			HttpHeaders headers, HttpStatus status, WebRequest request) {
+
+		String mensaje = ex.getBindingResult().getAllErrors().stream().map(e -> {
+			return e.getDefaultMessage().toString().concat(", ");
+		}).collect(Collectors.joining());
+
+		InfColExceptionResponse er = new InfColExceptionResponse(LocalDateTime.now(), mensaje,
+				request.getDescription(false));
+
+		return new ResponseEntity<Object>(er, HttpStatus.BAD_REQUEST);
+	}
+	
+	@ExceptionHandler(InfColModeloNotFoundException.class)
+	public ResponseEntity<InfColExceptionResponse> manejarModeloNotFoundException(InfColModeloNotFoundException ex,
+			WebRequest request) {
+		
+		InfColExceptionResponse er = new InfColExceptionResponse(LocalDateTime.now(), ex.getMessage(),
+				request.getDescription(false));
+		return new ResponseEntity<InfColExceptionResponse>(er, HttpStatus.NOT_FOUND);
+	}
+}

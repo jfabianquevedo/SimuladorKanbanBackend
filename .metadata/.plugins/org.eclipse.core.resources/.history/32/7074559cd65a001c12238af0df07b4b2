@@ -1,0 +1,20 @@
+package com.jquevedo.serviceImpl;
+
+import org.springframework.beans.factory.annotation.Autowired;
+
+import com.jquevedo.model.Tareas;
+import com.jquevedo.repo.GenericRepo;
+import com.jquevedo.repo.TareasRepo;
+import com.jquevedo.service.TareasService;
+
+public class TareasImpl extends CrudImpl<Tareas, Integer> implements TareasService {
+
+	@Autowired
+	private TareasRepo repo;
+
+	@Override
+	protected GenericRepo<Tareas, Integer> getRepo() {
+		return repo;
+	}
+
+}

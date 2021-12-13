@@ -1,0 +1,8 @@
+package com.jquevedo.service;
+
+import com.jquevedo.model.Tareas;
+
+public interface TareasService extends GenericCrud<Tareas, Integer> {
+
+	Tareas listarUsuario(Integer idSolicitud);
+}

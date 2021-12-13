@@ -1,0 +1,23 @@
+#configuracion Base de Datos
+spring.datasource.url=jdbc:h2:mem:testdb
+spring.datasource.driverClassName=org.h2.Driver
+spring.datasource.username=sa
+spring.datasource.password=password
+spring.jpa.database-platform=org.hibernate.dialect.H2Dialect
+spring.jpa.hibernate.ddl-auto=update
+spring.jpa.show-sql=false
+spring.h2.console.enabled=true
+
+security.oauth2.resource.filter-order=3
+
+#https://www.allkeysgenerator.com/Random/Security-Encryption-Key-Generator.aspx
+security.signing-key=MaYzkSjmkzPC57L
+security.encoding-strength=256
+security.security-realm=Spring Boot JWT
+
+security.jwt.client-id=kanbanToken
+security.jwt.client-secret=12345
+security.jwt.grant-type=password
+security.jwt.scope-read=read
+security.jwt.scope-write=write
+security.jwt.resource-ids=Kanbanid

@@ -1,0 +1,40 @@
+package com.jquevedo.model;
+
+import javax.persistence.Entity;
+import javax.persistence.ForeignKey;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+
+import lombok.AccessLevel;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
+
+@Getter
+@Setter
+@Builder(toBuilder = true)
+@AllArgsConstructor(access = AccessLevel.PACKAGE)
+@NoArgsConstructor(access = AccessLevel.PACKAGE)
+@ToString
+@Entity
+@Table(name = "Tareas")
+public class Tareas {
+	@Id
+	@GeneratedValue(strategy = GenerationType.SEQUENCE)
+	private Integer idTareas;
+	private String NombreTarea;
+	private String ResumenTarea;
+	private String EstadoTarea;
+
+	@OneToMany
+	@JoinColumn(name = "idUsuario", nullable = false, foreignKey = @ForeignKey(name = "FK_Tarea_Usuario"))
+	private Usuarios usuarios;
+
+}
